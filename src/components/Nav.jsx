@@ -2,11 +2,11 @@ import React from 'react'
 
 const Nav = () => {
   return (
-    <header className='bg-neutral-300 w-[15%] h-[100%]'>
+    <header className='bg-neutral-300 w-[25%] md:w-[15%] h-[100%]'>
       <nav className='pt-4 flex flex-col justify-center items-center'>
         <a 
           href='/create' 
-          className='py-3 px-5 border border-neutral-700 shadow-[4px_5px_0px_0px_rgba(0,0,0,0.7)]' 
+          className='py-3 px-2 md:px-5 border border-neutral-700 shadow-[4px_5px_0px_0px_rgba(0,0,0,0.7)] hover:shadow-[2px_3px_0px_0px_rgba(0,0,0,0.7)] transition-all' 
         >
           Add New Product
         </a>
@@ -15,17 +15,19 @@ const Nav = () => {
         <ul className='flex flex-col gap-2 w-[80%] '>
           <li className='flex items-center gap-2'>
             <span className='inline-block h-[20px] w-[20px] bg-yellow-300 rounded-full'></span>
-            <a href='#'>Category 1</a>
+            <a href='#'>Clothing</a>
           </li>
 
           <li className='flex items-center gap-2'>
             <span className='inline-block h-[20px] w-[20px] bg-red-300 rounded-full'></span>
-            <a href='#'>Category 1</a>
+            <a href='#'>Electronics</a>
           </li>
 
           <li className='flex items-center gap-2'>
             <span className='inline-block h-[20px] w-[20px] bg-blue-300 rounded-full'></span>
-            <a href='#'>Category 1</a>
+            <a href='#'>
+              Accesories
+            </a>
           </li>
           
         </ul>
