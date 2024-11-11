@@ -11,7 +11,7 @@ const Nav = () => {
           Add New Product
         </a>
         <hr className="h-px my-5 bg-neutral-700 border-0 w-[80%]"/>
-        <h1 className='text-2xl font-semibold mb-4 bg-red-300 w-[80%]'>Category Filter</h1>
+        <h1 className='text-2xl font-semibold mb-4 w-[80%]'>Category Filter</h1>
         <ul className='flex flex-col gap-2 w-[80%] '>
           <li className='flex items-center gap-2'>
             <span className='inline-block h-[20px] w-[20px] bg-yellow-300 rounded-full'></span>
