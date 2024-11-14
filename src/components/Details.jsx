@@ -1,10 +1,13 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import {ProductContext} from '../utils/Context'
 import Loading from './Loading'
 import axios from '../utils/axios'
 
 const Details = () => {
+  const [products, setProducts] = useContext(ProductContext);
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   // const [products] = useContext(ProductContext);
@@ -12,21 +15,31 @@ const Details = () => {
   
   const {id} = useParams();
 
-  const getProduct = async () =>{
-    try{
-      const response = await axios.get(`/products/${id}`);
-      console.log("Response:", response.data);
+  
+  
 
-      setProduct(response.data);
-    }catch(error){
-      console.log("Error while getting selected product: ", error);
-    }finally{
-      setLoading(false);
-    }
-  }
+
+
+  // const getProduct = async () =>{
+  //   try{
+  //     const response = await axios.get(`/products/${id}`);
+  //     // console.log("Response:", response.data);
+
+  //     setProduct(response.data);
+  //   }catch(error){
+  //     console.log("Error while getting selected product: ", error);
+  //   }finally{
+  //     setLoading(false);
+  //   }
+  // }
 
   useEffect(()=>{
-    getProduct();
+   
+    if(!product){
+      setProduct(products.find(product => product.id.toString() === id.toString()));
+      setLoading(false);
+    }
+
   }, [])
 
 
@@ -46,15 +59,12 @@ const Details = () => {
     </div>
   }
 
-  // console.log("Products:", products);
-  // console.log("Product ID:", id);
-
-  // let product = products.find(product => product.id === parseInt(id));
-  
-
-
-
-  // console.log("Product:", product);
+  const productDeleteHandler = (id) => {
+    const FilteredProducts = products.filter(product => product.id !== id);
+    setProducts(FilteredProducts);
+    localStorage.setItem('products', JSON.stringify(FilteredProducts));
+    navigate('/');
+  }
   
   
 
@@ -89,8 +99,10 @@ const Details = () => {
 
 
     <div className='flex gap-4 mt-2'>
-    <Link to='/' className='block w-fit text-center text-blue-500 font-semibold mt-5 broder border-2 border-blue-500 hover:text-black py-2 px-5 rounded-md hover:bg-blue-600 transition-all'>Edit</Link>
-    <Link to='/' className='block w-fit text-center mt-5 border-2 border-red-500 font-semibold text-red-500 py-2 px-5 rounded-md hover:bg-red-600 hover:text-black transition-all'>Delete</Link>
+
+    <Link to={`/edit/${product.id}`} className='block w-fit text-center text-blue-500 font-semibold mt-5 broder border-2 border-blue-500 hover:text-black py-2 px-5 rounded-md hover:bg-blue-600 transition-all'>Edit</Link>
+
+    <button onClick={()=>productDeleteHandler(product.id)} to='/' className='block w-fit text-center mt-5 border-2 border-red-500 font-semibold text-red-500 py-2 px-5 rounded-md hover:bg-red-600 hover:text-black transition-all'>Delete</button>
     </div>
 
     </div>
