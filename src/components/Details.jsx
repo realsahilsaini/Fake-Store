@@ -62,7 +62,7 @@ const Details = () => {
   const productDeleteHandler = (id) => {
     const FilteredProducts = products.filter(product => product.id !== id);
     setProducts(FilteredProducts);
-    localStorage.setItem('products', JSON.stringify(FilteredProducts));
+    // localStorage.setItem('products', JSON.stringify(FilteredProducts));
     navigate('/');
   }
   

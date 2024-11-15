@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { ProductContext } from '../utils/Context';
 import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
@@ -8,20 +8,27 @@ const Create = () => {
   const navigate = useNavigate();
 
 
-  const title = useRef(null);
-  const category = useRef(null);
-  const price = useRef(null);
-  const description = useRef(null);
-  const image = useRef(null);
+  // const title = useRef(null);
+  // const category = useRef(null);
+  // const price = useRef(null);
+  // const description = useRef(null);
+  // const image = useRef(null);
+
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
 
   const handelSubmit = (event) =>{
     event.preventDefault();
     // console.log("Title: ", title.current.value);
-    const newProductTitle = category.current.value;
-    const newProductCategory = category.current.value;
-    const newProductPrice = price.current.value;
-    const newProductDescription = description.current.value;
-    const newProductImage = image.current.value;
+    const newProductTitle = title;
+    const newProductCategory = category;
+    const newProductPrice = price;
+    const newProductDescription = description;
+    const newProductImage = image;
+    
 
     if(newProductTitle.trim().length < 5 || newProductCategory.trim().length < 5 || newProductPrice.trim().length < 1 || newProductDescription.trim().length < 5 || newProductImage.trim().length < 5){
       alert('Please fill all the fields');
@@ -37,9 +44,12 @@ const Create = () => {
       image: newProductImage
     }
 
+      console.log(newProductData);
+      
+
 
     setProducts([...products, newProductData]);
-    localStorage.setItem('products', JSON.stringify([...products, newProductData]));
+    // localStorage.setItem('products', JSON.stringify([...products, newProductData]));
     navigate('/');
     // toast.success('New Product Added Successfully');
   }
@@ -60,7 +70,8 @@ const Create = () => {
         id="productName"
         type="text"
         placeholder="Enter product name"
-        ref={title}
+        // ref={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
     </div>
 
@@ -74,8 +85,9 @@ const Create = () => {
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="productCategory"
         type="text"
-        ref={category}
+        // ref={category}
         placeholder="Enter product price"
+        onChange={(e) => setCategory(e.target.value)}
       />
     </div>
     <div className="mb-4 w-1/2">
@@ -87,8 +99,9 @@ const Create = () => {
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="productPrice"
         type="number"
-        ref={price}
+        // ref={price}
         placeholder="Enter product price"
+        onChange={(e) => setPrice(e.target.value)}
       />
     </div>
     
@@ -101,8 +114,9 @@ const Create = () => {
       <textarea
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight h-full min-h-[100px] resize-none focus:outline-none focus:shadow-outline"
         id="productDescription"
-        ref={description}
+        // ref={description}
         placeholder="Enter product description"
+        onChange={(e) => setDescription(e.target.value)}
       />
     </div>
     
@@ -115,8 +129,9 @@ const Create = () => {
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="productImage"
         type="text"
-        ref={image}
+        // ref={image}
         placeholder="Enter product image URL"
+        onChange={(e) => setImage(e.target.value)}
       />
     </div>
     <div className="flex items-center justify-between">
