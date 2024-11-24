@@ -14,18 +14,18 @@ const Nav = () => {
   const distinct_categories = [...new Set(products.map(product => product.category))];
 
   
- let color =  () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.4)`;
+ let color =  () => `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 
 
   // console.log("Distinct Categories:", distinct_categories);
 
   return (
-    <header className='bg-neutral-300 w-[25%] md:w-[15%] h-[100%]'>
+    <header className='bg-neutral-900 text-white w-[25%] md:w-[15%] h-[100%]'>
 
       <nav className='pt-4 flex flex-col justify-center items-center'>
         <a 
           href='/create' 
-          className='py-3 px-2 md:px-5 border border-neutral-700 shadow-[4px_5px_0px_0px_rgba(0,0,0,0.7)] hover:shadow-[2px_3px_0px_0px_rgba(0,0,0,0.7)] transition-all' 
+          className='py-3 px-2 md:px-5 border-2 border-neutral-400 shadow-[4px_5px_0px_0px_rgba(211,211,211,0.7)] hover:shadow-[2px_3px_0px_0px_rgba(211,211,211,0.7)] transition-all' 
         >
           Add New Product
         </a>
@@ -39,7 +39,7 @@ const Nav = () => {
           {distinct_categories && distinct_categories.map((category, index) => (
 
             <Link to={`/?category=${category}`} key={index} className='flex items-center gap-2'>
-            <span style={{backgroundColor: color()}} className='inline-block h-[18px] w-[18px] border border-neutral-500 rounded-full'></span>
+            <span style={{backgroundColor: color()}} className='inline-block h-[18px] w-[18px] border border-neutral-300 rounded-full'></span>
               {category}
           </Link>
           ))}

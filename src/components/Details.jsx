@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import {ProductContext} from '../utils/Context'
 import Loading from './Loading'
 import axios from '../utils/axios'
+import { toast } from 'react-toastify'
 
 const Details = () => {
   const [products, setProducts] = useContext(ProductContext);
@@ -64,6 +65,7 @@ const Details = () => {
     setProducts(FilteredProducts);
     // localStorage.setItem('products', JSON.stringify(FilteredProducts));
     navigate('/');
+    toast.error('Product Deleted Successfully');
   }
   
   

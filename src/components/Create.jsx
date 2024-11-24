@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { ProductContext } from '../utils/Context';
 import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Create = () => {
   const [products, setProducts] = useContext(ProductContext);
@@ -44,14 +45,14 @@ const Create = () => {
       image: newProductImage
     }
 
-      console.log(newProductData);
+      // console.log(newProductData);
       
 
 
     setProducts([...products, newProductData]);
     // localStorage.setItem('products', JSON.stringify([...products, newProductData]));
     navigate('/');
-    // toast.success('New Product Added Successfully');
+    toast.success('New Product Added Successfully');
   }
 
   return (
